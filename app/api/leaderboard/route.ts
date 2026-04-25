@@ -2,11 +2,21 @@
 import { NextResponse } from 'next/server';
 import { supabase } from '@/lib/supabaseClient';
 
+const MAX_LIMIT = 100;
+const DEFAULT_LIMIT = 50;
+const MAX_OFFSET = 10_000;
+
+function parseClampedInt(raw: string | null, fallback: number, min: number, max: number) {
+  const n = Number(raw);
+  if (!Number.isFinite(n)) return fallback;
+  return Math.max(min, Math.min(max, Math.floor(n)));
+}
+
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const gameId = searchParams.get('game_id');
-  const limit = Number(searchParams.get('limit')) || 50;
-  const offset = Number(searchParams.get('offset')) || 0;
+  const limit = parseClampedInt(searchParams.get('limit'), DEFAULT_LIMIT, 1, MAX_LIMIT);
+  const offset = parseClampedInt(searchParams.get('offset'), 0, 0, MAX_OFFSET);
 
   let query = supabase
     .from('leaderboard')
