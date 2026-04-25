@@ -1,6 +1,4 @@
-import { HeroSection } from '@/components/hero-section'
-import { FeaturesSection } from '@/components/features-section'
-import { GamesGrid } from '@/components/games-grid'
+import { LandingPage } from '@/components/landing/page'
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
 import { createClient } from '@/lib/supabase/server'
@@ -10,12 +8,10 @@ export default async function Home() {
   const { data: { user } } = await supabase.auth.getUser()
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="relative min-h-screen bg-background text-foreground overflow-x-hidden">
       <Navbar user={user} />
-      <main className="pt-16">
-        <HeroSection />
-        <FeaturesSection />
-        <GamesGrid />
+      <main className="relative">
+        <LandingPage />
       </main>
       <Footer />
     </div>
