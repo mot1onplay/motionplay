@@ -31,19 +31,22 @@ export default async function GamePage({
   // If no valid score → maybe show "Play the game" or redirect
   if (finalScore <= 0 || durationSeconds <= 0) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-900 text-white">
-        <div className="text-center">
-          <h1 className="text-4xl mb-4">Game: {game.title}</h1>
-          <p className="text-xl mb-6">Play to submit a score!</p>
-          {/* Your game canvas / start button here */}
+      <div className="min-h-screen flex items-center justify-center bg-background text-foreground">
+        <div className="text-center px-6">
+          <div className="text-[10px] font-mono uppercase tracking-[0.32em] text-foreground/55 mb-4">
+            Now playing
+          </div>
+          <h1 className="font-serif text-4xl lg:text-5xl font-semibold tracking-[-0.025em] mb-4">
+            {game.title}
+          </h1>
+          <p className="text-foreground/65">Play to submit a score.</p>
         </div>
       </div>
     );
   }
 
-  // Show Game Over UI (client component for interactivity)
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-900 p-4">
+    <div className="min-h-screen flex items-center justify-center bg-background p-4">
       <GameOverClient
         gameId={game.game_id}           // uuid from DB
         finalScore={finalScore}
