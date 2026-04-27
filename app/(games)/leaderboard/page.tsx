@@ -70,16 +70,16 @@ export default function LeaderboardPage() {
   }, [selectedGame])
 
   const getRankIcon = (index: number) => {
-    if (index === 0) return <Trophy className="h-6 w-6 text-yellow-400" />
-    if (index === 1) return <Medal className="h-6 w-6 text-gray-300" />
-    if (index === 2) return <Award className="h-6 w-6 text-amber-600" />
+    if (index === 0) return <Trophy className="h-6 w-6 text-foreground" />
+    if (index === 1) return <Medal className="h-6 w-6 text-foreground/65" />
+    if (index === 2) return <Award className="h-6 w-6 text-foreground/40" />
     return <span className="h-6 w-6 flex items-center justify-center text-muted-foreground font-mono">{index + 1}</span>
   }
 
   const getRankBg = (index: number) => {
-    if (index === 0) return "bg-yellow-400/10 border-yellow-400/30"
-    if (index === 1) return "bg-gray-300/10 border-gray-300/30"
-    if (index === 2) return "bg-amber-600/10 border-amber-600/30"
+    if (index === 0) return "bg-foreground/[0.06] border-foreground/25"
+    if (index === 1) return "bg-foreground/[0.04] border-foreground/15"
+    if (index === 2) return "bg-foreground/[0.025] border-foreground/10"
     return "bg-card border-border"
   }
 
